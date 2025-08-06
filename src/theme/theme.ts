@@ -2,6 +2,12 @@ import { ThemeOptions } from '@mui/material';
 import colors from './color';
 import type { PaletteOverrides } from './types';
 
+/**
+ * The default palette configuration for the theme.
+ * Extends Material-UI's palette with additional color variations and custom color schemes.
+ *
+ * @public
+ */
 export const palette: PaletteOverrides = {
   primary: {
     main: colors.BLUE[700],
@@ -112,9 +118,26 @@ export const palette: PaletteOverrides = {
   },
 };
 
+/**
+ * The default font family for the theme
+ * @internal
+ */
 const fontFamily = 'sans-serif';
+
+/**
+ * Spacing function that converts a factor to rem units
+ * @param factor - The spacing factor to convert
+ * @returns The spacing value in rem units
+ * @internal
+ */
 const spacing = (factor: number) => `${0.5 * factor}rem`;
 
+/**
+ * The default theme configuration.
+ * Extends Material-UI's ThemeOptions with custom typography, palette, and spacing.
+ *
+ * @public
+ */
 export const theme = {
   typography: {
     fontFamily,
