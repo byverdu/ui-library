@@ -3,7 +3,7 @@ export { useSetTabTitle } from './hooks/useSetTabTitle';
 export { default as ThemeProvider } from './theme/ThemeProvider';
 export * from './theme/theme';
 export * from './theme/ThemeProvider';
-export * as MUI from '@mui/material';
+export { default as MUIBox } from '@mui/material/Box';
 export * from './lib/IconButton';
 export * from './lib/Logo';
 export * from './lib/AppBar';

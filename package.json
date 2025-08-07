@@ -35,6 +35,10 @@
       "import": "./dist/theme/*.js",
       "types": "./dist/theme/*.d.ts"
     },
+    "./mui": {
+      "import": "./dist/mui/index.js",
+      "types": "./dist/mui/index.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "typesVersions": {
