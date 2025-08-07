@@ -67,7 +67,7 @@
     "build:types": "tsc --p ./tsconfig-build.json",
     "build:all": "npm run clean && npm run build && npm run build:types"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^5.16.14",
