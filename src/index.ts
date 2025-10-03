@@ -5,6 +5,7 @@ export * from './theme/theme';
 export * from './theme/ThemeProvider';
 export { default as MUIBox } from '@mui/material/Box';
 export * from './lib/IconButton';
+export * from './lib';
 export * from './lib/Logo';
 export * from './lib/AppBar';
 export * from './lib/Checkbox';
