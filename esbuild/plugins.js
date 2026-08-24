@@ -1,6 +1,7 @@
-import { runBuildTypes } from './utils.js';
 import { promises } from 'fs';
-import { LIB_DIR, EXTRA_LIB_MODULES } from './constants.js';
+
+import { EXTRA_LIB_MODULES, LIB_DIR } from './constants.js';
+import { runBuildTypes } from './utils.js';
 
 /**
  * @type {import('./buildTypes').Plugin}

@@ -4,4 +4,4 @@ const LIB_DIR = 'lib';
 const EXTRA_LIB_MODULES = ['hooks', 'theme', 'mui'];
 const EXTERNALS_MODULES = ['./*', './*/index'];
 
-export { OUT_BASE, OUT_DIR, LIB_DIR, EXTERNALS_MODULES, EXTRA_LIB_MODULES };
+export { EXTERNALS_MODULES, EXTRA_LIB_MODULES, LIB_DIR, OUT_BASE, OUT_DIR };

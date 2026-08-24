@@ -1,5 +1,5 @@
-import fs, { promises } from 'fs';
 import { exec } from 'child_process';
+import fs, { promises } from 'fs';
 
 export async function copyStaticAssets() {
   try {

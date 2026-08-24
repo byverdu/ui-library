@@ -1,6 +1,7 @@
-import RawLogo from '../../assets/logo.svg';
 import type { SvgIconProps } from '@mui/material';
 import { createSvgIcon } from '@mui/material';
+
+import RawLogo from '../../assets/logo.svg';
 
 /**
  * Props for the Logo component

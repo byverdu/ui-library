@@ -1,7 +1,8 @@
 import { context } from 'esbuild';
+
 import { configBuilder } from './esbuild/config.js';
-import { copyStaticAssets } from './esbuild/utils.js';
 import { buildTypesOnBuildEnd } from './esbuild/plugins.js';
+import { copyStaticAssets } from './esbuild/utils.js';
 
 const extraConfig = (config) => {
   const newConfig = { ...config };

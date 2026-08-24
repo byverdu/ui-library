@@ -1,19 +1,20 @@
 import {
   AppBar,
   Box,
+  Chip,
   FormControlLabel,
   FormGroup,
-  Typography,
-  Chip,
   Skeleton,
+  Typography,
 } from '@mui/material';
-import {
-  Logo,
-  useGetBoundingClientRect,
-  AutoHeightBox,
-  ScrollableBox,
-} from '../src';
 import { useEffect, useState } from 'react';
+
+import {
+  AutoHeightBox,
+  Logo,
+  ScrollableBox,
+  useGetBoundingClientRect,
+} from '../src';
 import { MaterialUISwitch } from './Switch';
 
 export const Playground = () => {

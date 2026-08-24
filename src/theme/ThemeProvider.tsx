@@ -1,10 +1,11 @@
 import {
   ThemeProvider as Provider,
-  createTheme,
   type ThemeOptions,
+  createTheme,
 } from '@mui/material';
-import { theme as defaultTheme } from '../theme';
 import { ReactNode } from 'react';
+
+import { theme as defaultTheme } from '../theme';
 
 /**
  * Props for the ThemeProvider component

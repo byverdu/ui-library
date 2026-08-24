@@ -4,6 +4,7 @@ import {
   AppBarProps as MUIAppBarProps,
   Typography,
 } from '@mui/material';
+
 import Logo from '../Logo';
 
 /**

@@ -1,5 +1,5 @@
-import { Box, type SxProps, type Theme, Tabs, Tab } from '@mui/material';
 import { DEFAULT_GAP } from '@constants';
+import { Box, type SxProps, Tab, Tabs, type Theme } from '@mui/material';
 import { ReactElement, ReactNode } from 'react';
 
 type AutoHeightProps = {

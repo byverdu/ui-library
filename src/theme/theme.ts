@@ -1,4 +1,5 @@
 import { ThemeOptions } from '@mui/material';
+
 import colors from './color';
 import type { PaletteOverrides } from './types';
 

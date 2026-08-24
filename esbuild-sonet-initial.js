@@ -1,9 +1,10 @@
+import fs, { promises } from 'fs';
+import path from 'path';
+
 import esbuild from 'esbuild';
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import svgr from 'esbuild-plugin-svgr';
 import { glob } from 'glob';
-import path from 'path';
-import fs, { promises } from 'fs';
 
 // Common esbuild configuration
 const commonConfig = {

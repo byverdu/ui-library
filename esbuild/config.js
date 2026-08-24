@@ -1,15 +1,16 @@
+import path from 'path';
+
 import { nodeExternalsPlugin } from 'esbuild-node-externals';
 import svgr from 'esbuild-plugin-svgr';
 import { glob } from 'glob';
-import path from 'path';
+
 import {
-  OUT_BASE,
-  OUT_DIR,
   EXTERNALS_MODULES,
   EXTRA_LIB_MODULES,
   LIB_DIR,
+  OUT_BASE,
+  OUT_DIR,
 } from './constants.js';
-
 import { importAllIndicesFiles } from './plugins.js';
 
 /**
@@ -91,7 +92,7 @@ const buildComponentsIndicesConfig = glob
   .sync(`src/${LIB_DIR}/*/`, { absolute: false })
   .map((dir) => ({
     ...config,
-    entryPoints: [`${dir}/index.ts`],
+    entryPoints: glob.sync(`${dir}/index.{ts,tsx,js}`),
     outfile: outFile(`/${LIB_DIR}/${path.basename(dir)}`),
     external: [`./${path.basename(dir)}`],
   }));

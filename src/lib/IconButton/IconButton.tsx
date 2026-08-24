@@ -1,8 +1,8 @@
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   IconButtonProps as MUIBtnProps,
   IconButton as MuiIcon,
 } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 /**
  * Props for the IconButton component
