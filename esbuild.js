@@ -1,4 +1,5 @@
 import { build } from 'esbuild';
+
 import { configBuilder } from './esbuild/config.js';
 import { copyStaticAssets } from './esbuild/utils.js';
 

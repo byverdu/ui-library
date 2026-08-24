@@ -43,20 +43,12 @@
   },
   "typesVersions": {
     "*": {
-      "components/*": [
-        "./dist/components/*"
-      ],
-      "hooks": [
-        "./dist/hooks/index.d.ts"
-      ],
-      "theme": [
-        "./dist/theme/index.d.ts"
-      ]
+      "components/*": ["./dist/components/*"],
+      "hooks": ["./dist/hooks/index.d.ts"],
+      "theme": ["./dist/theme/index.d.ts"]
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "sideEffects": false,
   "scripts": {
     "dev": "vite",
@@ -71,20 +63,20 @@
   "peerDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^5.16.14",
-    "@mui/material": "^5.16.14",
+    "@mui/icons-material": "7.3.11",
+    "@mui/material": "7.3.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20.17.17",
+    "@types/node": "^24.0.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@typescript-eslint/eslint-plugin": "8.24.0",
     "@typescript-eslint/parser": "^8.24.0",
     "@vitejs/plugin-react": "^4.3.4",
     "biome": "^0.3.3",
-    "esbuild": "^0.24.2",
+    "esbuild": "^0.25.2",
     "esbuild-node-externals": "^1.18.0",
     "esbuild-plugin-svgr": "^3.1.0",
     "glob": "^11.0.1",
