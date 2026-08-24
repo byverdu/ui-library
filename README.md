@@ -1,6 +1,10 @@
 # UI Library
 
-A modern React component library built with TypeScript, esbuild, and Material-UI (MUI). A Dev mode is also available where you can see the changes and test components in the playground, is built with vite. This library provides reusable UI components, hooks, exports MUI components and theming solutions that can be consumed by multiple applications.
+A modern React component library built with TypeScript, esbuild, and Material-UI
+(MUI). A Dev mode is also available where you can see the changes and test
+components in the playground, is built with vite. This library provides reusable
+UI components, hooks, exports MUI components and theming solutions that can be
+consumed by multiple applications.
 
 ## 📦 What's Included
 
