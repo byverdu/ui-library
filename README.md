@@ -1,6 +1,10 @@
 # UI Library
 
-A modern React component library built with TypeScript, esbuild, and Material-UI (MUI). A Dev mode is also available where you can see the changes and test components in the playground, is built with vite. This library provides reusable UI components, hooks, exports MUI components and theming solutions that can be consumed by multiple applications.
+A modern React component library built with TypeScript, esbuild, and Material-UI
+(MUI). A Dev mode is also available where you can see the changes and test
+components in the playground, is built with vite. This library provides reusable
+UI components, hooks, exports MUI components and theming solutions that can be
+consumed by multiple applications.
 
 ## 📦 What's Included
 
@@ -9,7 +13,8 @@ A modern React component library built with TypeScript, esbuild, and Material-UI
 - Providing **independent component bundling**
 - **Components**: Reusable React components built on top of MUI
 - **Hooks**: Custom React hooks for common functionality
-- **Theme**: Centralized theming system with MUI integration and a custom theme provider
+- **Theme**: Centralized theming system with MUI integration and a
+custom theme provider
 - **MUI Re-exports**: Direct access to MUI components without duplicate dependencies
 - **Dev mode**: A playground where you can see the changes and test components
 
@@ -127,7 +132,7 @@ import { MUIBox, Checkbox, useSetTabTitle } from '@your-org/ui-library';
 
 The recommended way to test the library locally with consuming applications:
 
-1. **In the library directory:**
+1 - **In the library directory:**
 
 ```bash
 # Build the library
@@ -137,16 +142,17 @@ pnpm run build
 pnpm link --global
 ```
 
-2. **In your consuming application (optional):**
+2 - **In your consuming application (optional):**
 
 ```bash
 # Link to the local library
 pnpm link --global @your-org/ui-library
 ```
 
-3. **Important: Handle React Hook Issues**
+3 - **Important: Handle React Hook Issues**
 
-When testing locally, you might encounter React hooks issues. Solve this by linking React from the consuming app to the library:
+When testing locally, you might encounter React hooks issues.
+Solve this by linking React from the consuming app to the library:
 
 ```bash
 # In the consuming app, link React
@@ -213,6 +219,86 @@ function MyComponent() {
 
 ## 🔨 Build System
 
+### `esbuild/` Folder Internals
+
+The actual esbuild configuration lives in the [esbuild/](esbuild/) folder and is
+consumed by two entry scripts at the project root: [esbuild.js](esbuild.js) (one-off
+production build, used by `pnpm run build`) and [esbuild-watch.js](esbuild-watch.js)
+(dev watch mode, used by `pnpm run build:watch`). Both just call `configBuilder()`
+and hand the resulting configs to esbuild's `build()` / `context()`.
+
+#### [constants.js](esbuild/constants.js)
+
+Shared path/module constants used across the other files:
+
+- `OUT_BASE` (`'src'`) / `OUT_DIR` (`'dist'`) — source and output roots, used as
+  esbuild's `outbase`/`outdir` so the `dist/` folder mirrors the `src/` structure.
+- `LIB_DIR` (`'lib'`) — the folder containing the actual components.
+- `EXTRA_LIB_MODULES` (`['hooks', 'theme', 'mui']`) — the other top-level modules
+  that, like `lib`, get their own subpath entry point (e.g. `/hooks`, `/theme`).
+- `EXTERNALS_MODULES` (`['./*', './*/index']`) — glob patterns used to mark sibling
+  modules as `external` so esbuild doesn't bundle them into each other and cause
+  duplicated code or circular dependencies.
+
+#### [buildTypes.d.ts](esbuild/buildTypes.d.ts)
+
+Re-exports esbuild's own `BuildOptions` and `Plugin` types under local aliases
+so the JSDoc `@type` annotations used throughout the plain-JS files in
+this folder get proper type-checking and editor autocomplete.
+
+#### [config.js](esbuild/config.js)
+
+Builds the full array of esbuild configs, one per entry point, and exports a single
+function, `configBuilder({ extraConfig, env })`, that combines them all:
+
+- **`buildAllNonIndexFilesConfig`** — globs every `.ts`/`.tsx` file under `src/`
+  (excluding all `index.ts` files) and builds each one individually, preserving
+the folder structure. This produces the actual component/hook/theme implementation
+  files in `dist/`.
+- **`buildLibIndexConfig`** — builds `src/lib/index.ts` → `dist/lib/index.js`, the
+  bundle that re-exports every component for the `/lib` subpath.
+- **`buildSeparateModuleIndicesConfig`** — one config per entry in
+  `EXTRA_LIB_MODULES`, building each module's own `index.ts` (`hooks`, `theme`,
+  `mui`) so it can be imported independently via its own subpath.
+- **`buildComponentsIndicesConfig`** — globs every folder directly under
+  `src/lib/*` and builds each component's own `index` file, giving each component
+  (`AppBar`, `Checkbox`, etc.) its own independent bundle/subpath.
+- **`buildMainIndexConfig`** — builds the root `src/index.ts` → `dist/index.js`.
+  It uses the `importAllIndicesFiles` plugin (see below) to merge the contents of
+  the `lib`/`hooks`/`theme`/`mui` index files into the root entry point, while
+  marking those same paths as `external` to avoid re-bundling their internals and
+  creating circular dependencies.
+- **`mergeBuildProps(props, buildType)`** — applies environment-specific overrides:
+  `minify`/`treeShaking` are enabled for `production`, `sourcemap` is enabled
+  otherwise (`development`).
+- **`configBuilder({ extraConfig, env = 'production' })`** — the exported entry
+  point. Concatenates all the configs above into one array, optionally lets the
+  caller inject extra options/plugins per config via `extraConfig` (used by
+  `esbuild-watch.js` to add the `buildTypesOnBuildEnd` plugin), then runs each
+  through `mergeBuildProps` for the given `env`.
+
+#### [plugins.js](esbuild/plugins.js)
+
+- **`importAllIndicesFiles`** — an esbuild `onLoad` plugin used only by
+  `buildMainIndexConfig`. For the root entry file it reads the `index.ts` of
+  `lib`/`hooks`/`theme`/`mui`, rewrites their relative `./` imports to
+  `./<module>/` so the paths still resolve once concatenated, joins all of that
+  content together, writes it back to `src/index.ts` on disk, and returns it as
+the module's contents. This is what physically generates the root `src/index.ts`
+  barrel file that re-exports everything, without a manual or circular import chain.
+- **`buildTypesOnBuildEnd`** — an esbuild plugin used only in watch mode. It counts
+  builds via `onStart`, and on every successful `onEnd` for the `src/index.ts`
+  entry point it triggers `runBuildTypes()` — once after the first build, and again
+  after every rebuild — so `.d.ts` declaration files stay in sync while watching.
+
+#### [utils.js](esbuild/utils.js)
+
+- **`copyStaticAssets()`** — after bundling, copies `src/assets` (if present) into
+  `dist/assets` and copies `package.json` into `dist/`, so the built `dist/` folder
+  is a self-contained, publishable package.
+- **`runBuildTypes()`** — runs `npm run build:types` (`tsc -p tsconfig-build.json`)
+  as a child process to (re)generate `.d.ts` declaration files, logging its output.
+
 ### Build Scripts
 
 ```bash
@@ -275,7 +361,7 @@ Using `"moduleResolution": "bundler"` enables:
 - Proper subpath exports support
 - Modern import/export handling
 
-### TODO:
+### TODO
 
 - [ ] Add Jest for testing
 - [ ] Find a way to create documentation
