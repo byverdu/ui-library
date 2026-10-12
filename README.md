@@ -361,6 +361,63 @@ Using `"moduleResolution": "bundler"` enables:
 - Proper subpath exports support
 - Modern import/export handling
 
+### git hooks
+
+Pre commit hook to prevent to commit against the main branch.
+
+```bash
+branch="$(git rev-parse --abbrev-ref HEAD)" # get name current branch 
+
+if [ "$branch" = "main" ]; then
+  echo "You can't commit directly to the main branch"
+  exit 1
+fi
+
+npx lint-staged
+```
+
+Pre push hook that will check what files have changed within the commit and run
+the tests for those files before pushing to origin.
+
+> There's an issue for when the branch haven't been pushed the first time that
+the hook does not run
+
+<!-- markdownlint-disable MD013 -->
+```bash
+# Allow execution of commands that could fail
+set +e
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+# git diff [<options>] [--] <path>
+# git diff --name-only, show only names of changed files
+# git diff --diff-filter=ACMR, Added-Copied-Modified-Renamed
+# git diff current_branch_name -- paths_to_filter
+
+# $(xargs dirname), remove file name from path
+# $(tr "\n" "|"), replace new lines with the "|" char
+# $(sed 's/.$//'), remove last char
+( a "|" char is added at the end on the previous command)
+
+COMPONENTS_FOLDER=libs/components/src/lib
+APPLICATION_FOLDER=apps/frontend/src
+FILES_TO_EXCLUDE=':!:*.js'
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+FILES_WITH_CHANGES=$(git diff --diff-filter=ACMR --name-only"origin/${CURRENT_BRANCH}" -- "${FILES_TO_EXCLUDE}" "${COMPONENTS_FOLDER}" "${APPLICATION_FOLDER}")
+
+FILES_PATHS=$(echo "${FILES_WITH_CHANGES}" | xargs dirname | tr "\n" "|" | sed 's/.$//')
+
+if [ "${FILES_WITH_CHANGES}" = "" ]; then
+    echo "No tests found to run."
+
+    exit 0
+fi
+
+npx jest --silent --passWithNoTests -- --findRelatedTests "${FILES_PATHS}"
+```
+<!-- markdownlint-enable MD013 -->
+
 ### TODO
 
 - [ ] Add Jest for testing
