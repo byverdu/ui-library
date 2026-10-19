@@ -1,7 +1,5 @@
+import { Chip, type ChipProps } from '@lib';
 import { useEffect, useState } from 'react';
-
-import type { ChipProps } from './Chip';
-import Chip from './Chip';
 
 export type ToggleableChipProps = ChipProps & {
   onClick?: () => void;

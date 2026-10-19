@@ -3,13 +3,7 @@ import { Meta, StoryFn } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import ThemeProvider from '../../theme/ThemeProvider';
-import {
-  Chip,
-  type ChipProps,
-  ToggleableChip,
-  type ToggleableChipProps,
-} from './';
-import { type ChipColors } from './Chip';
+import Chip, { type ChipColors, type ChipProps } from './Chip';
 
 export default {
   title: 'Chip',
@@ -110,28 +104,4 @@ const AllVariantsTemplate: StoryFn<typeof Chip> = (args: ChipProps) => (
 export const AllVariants = AllVariantsTemplate.bind({});
 AllVariants.args = {
   color: 'primary',
-};
-
-const ToggleableTemplate: StoryFn<typeof ToggleableChip> = (
-  args: ToggleableChipProps,
-) => <ToggleableChip {...args} />;
-
-export const Toggleable = ToggleableTemplate.bind({});
-Toggleable.args = {
-  label: 'Toggle me',
-  hideIcon: false,
-};
-
-export const ToggleableExpanded = ToggleableTemplate.bind({});
-ToggleableExpanded.args = {
-  label: 'Expanded',
-  hideIcon: false,
-  defaultChecked: true,
-};
-
-export const ToggleableWithBadge = ToggleableTemplate.bind({});
-ToggleableWithBadge.args = {
-  label: 'Notifications',
-  hideIcon: false,
-  badgeCount: '1200',
 };
