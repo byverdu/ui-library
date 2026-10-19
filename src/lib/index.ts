@@ -1,8 +1,12 @@
 export * from './AppBar';
 export { default as AppBar } from './AppBar';
+export * from './AutoHeightBox';
+export { default as AutoHeightBox } from './AutoHeightBox';
 export * from './Checkbox';
 export { default as Checkbox } from './Checkbox';
 export * from './Components';
+export * from './Icon';
+export { default as Icon } from './Icon';
 export * from './IconButton';
 export { default as IconButton } from './IconButton';
 export * from './Logo';

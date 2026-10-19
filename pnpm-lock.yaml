@@ -17,6 +17,9 @@ dependencies:
   '@mui/material':
     specifier: 7.3.11
     version: 7.3.11(@emotion/react@11.14.0)(@emotion/styled@11.14.1)(@types/react@18.3.31)(react-dom@18.3.1)(react@18.3.1)
+  lodash-es:
+    specifier: ^4.18.1
+    version: 4.18.1
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -25,6 +28,9 @@ dependencies:
     version: 18.3.1(react@18.3.1)
 
 devDependencies:
+  '@juggle/resize-observer':
+    specifier: ^3.4.0
+    version: 3.4.0
   '@storybook/addon-a11y':
     specifier: ^10.6.0
     version: 10.6.0(storybook@10.6.0)
@@ -34,6 +40,9 @@ devDependencies:
   '@storybook/react-vite':
     specifier: ^10.6.0
     version: 10.6.0(@types/react-dom@18.3.7)(@types/react@18.3.31)(react-dom@18.3.1)(react@18.3.1)(storybook@10.6.0)(typescript@5.7.3)(vite@6.4.3)
+  '@types/lodash-es':
+    specifier: ^4.17.12
+    version: 4.17.12
   '@types/node':
     specifier: ^24.0.1
     version: 24.19.0
@@ -702,6 +711,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
+
+  /@juggle/resize-observer@3.4.0:
+    resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: true
 
   /@mdx-js/react@3.1.1(@types/react@18.3.31)(react@18.3.1):
     resolution: {integrity: sha512-f++rKLQgUVYDAtECQ6fn/is15GkEH9+nZPM3MS0RcxVqoTfawHvDlSCH7JbMhAM6uJ32v3eXLvLmLvjGu7PTQw==}
@@ -1874,6 +1887,16 @@ packages:
 
   /@types/katex@0.16.8:
     resolution: {integrity: sha512-trgaNyfU+Xh2Tc+ABIb44a5AYUpicB3uwirOioeOkNPPbmgRNtcWyDeeFRzjPZENO9Vq8gvVqfhaaXWLlevVwg==}
+    dev: true
+
+  /@types/lodash-es@4.17.12:
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+    dependencies:
+      '@types/lodash': 4.17.26
+    dev: true
+
+  /@types/lodash@4.17.26:
+    resolution: {integrity: sha512-48NWfiY6oNcKOh47Z4h+sIvwcQR91h6KPhaYKgeMIrkT2jV82Gy90SErj60vW8jQbeMSOSbhIv3bZ7JoqPPVhA==}
     dev: true
 
   /@types/mdx@2.0.14:
@@ -3108,6 +3131,10 @@ packages:
     dependencies:
       uc.micro: 3.0.0
     dev: true
+
+  /lodash-es@4.18.1:
+    resolution: {integrity: sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==}
+    dev: false
 
   /lodash@3.10.1:
     resolution: {integrity: sha512-9mDDwqVIma6OZX79ZlDACZl8sBm0TEnkf99zV3iMA4GzkIT/9hiqP5mY0HoT1iNLCrKc/R1HByV+yJfRWVJryQ==}
