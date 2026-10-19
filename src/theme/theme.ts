@@ -53,6 +53,9 @@ export const theme = {
   },
 } as ThemeOptions;
 
-export const sxValidator = (sx: SxProps<Theme> | undefined, theme: Theme) =>
-  (typeof sx === 'function' ? sx(theme) : (sx as Record<string, unknown>)) ||
+export const sxValidator = (
+  sx: SxProps<Theme> | undefined,
+  theme: Theme,
+): Record<string, unknown> =>
+  ((typeof sx === 'function' ? sx(theme) : sx) as Record<string, unknown>) ||
   {};

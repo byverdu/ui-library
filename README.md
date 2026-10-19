@@ -422,6 +422,7 @@ npx jest --silent --passWithNoTests -- --findRelatedTests "${FILES_PATHS}"
 
 - [ ] Add Jest for testing
 - [ ] Find a way to create documentation
+- [ ] Clean on the imports
 
 ## 📚 Resources
 

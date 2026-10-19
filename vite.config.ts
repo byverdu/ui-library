@@ -14,6 +14,10 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '@constants': resolve(__dirname, './src/constants'),
+        '@lib': resolve(__dirname, './src/lib'),
+        '@utils': resolve(__dirname, './src/utils'),
+        '@types': resolve(__dirname, './src/types'),
+        '@hooks': resolve(__dirname, './src/hooks'),
       },
     },
   };
