@@ -53,8 +53,9 @@ type IconType =
   | 'Rounded'
   | 'TwoTone'
   | 'Sharp'
-  | 'Custom';
+
 type IconName = IconProps['name'];
+
 type Colors =
   | 'primary'
   | 'secondary'
@@ -190,7 +191,7 @@ const HeadNavArea = ({
         <InputBase
           startAdornment={<Icon name='Search' />}
           endAdornment={
-            <IconButton size='small' onClick={() => setQuery('')}>
+            <IconButton disabled={!query.length} size='small' onClick={() => setQuery('')}>
               <Icon name='Close' />
             </IconButton>
           }
@@ -250,7 +251,7 @@ const HeadNavArea = ({
 );
 
 const Template: StoryFn<typeof Icon> = ({ ...args }: IconProps) => {
-  const [iconType, setIconType] = useState<IconType>('All');
+  const [iconType, setIconType] = useState<IconType>('Filled');
   const [selectedIcon, setSelectedIcon] = useState<IconName>('Abc');
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
