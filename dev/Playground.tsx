@@ -11,8 +11,8 @@ import { useEffect, useState } from 'react';
 
 import {
   AutoHeightBox,
+  Icon,
   Logo,
-  ScrollableBox,
   useGetBoundingClientRect,
 } from '../src';
 import { MaterialUISwitch } from './Switch';
@@ -86,17 +86,7 @@ export const Playground = () => {
           top: ({ spacing }) => `${marginTop + spacing(2)}px`,
         }}
       >
-        <Box sx={{ height: 200, border: '1px solid red' }}>
-          <ScrollableBox
-            tabs={chips.map((chip) => (
-              <Chip
-                key={chip}
-                label={`${chip + 1}`}
-                onDelete={() => setChips(chips.filter((ch) => ch !== chip))}
-              />
-            ))}
-          />
-        </Box>
+        <Icon name='AbcSharp' color='primary' fontSize='large' />
         <AutoHeightBox sxProps={{ borderColor: 'yellowgreen' }}>
           {Array.from({ length: 20 }, () => (
             <Skeleton height={100} />
