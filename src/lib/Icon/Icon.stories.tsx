@@ -21,7 +21,7 @@ import { fn } from 'storybook/test';
 import Icon, { FontSizes, type IconProps } from './';
 
 export default {
-  title: 'Atoms/Icon',
+  title: 'Icon',
   component: Icon,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
