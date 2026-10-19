@@ -96,6 +96,7 @@ export default {
     900: '#262626',
   },
   BLACK_SHADES: {
+    10: '#FAFAFA',
     15: '#F8F8F8',
     25: '#F1F1F1',
     50: '#E6E6E6',
