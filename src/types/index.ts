@@ -1,3 +1,21 @@
+export type BlackShades = {
+  10: string;
+  15: string;
+  25: string;
+  50: string;
+  75: string;
+  85: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+};
+
 /**
  * Represents the color configuration for a theme color variant
  * @public
@@ -71,28 +89,7 @@ export type PaletteOverrides = {
     default: string;
   };
   /** Tertiary color scheme */
-  tertiary: {
-    main: string;
-    dark: string;
-    light: string;
-    lightBackground: string;
-    contrastText: string;
-  };
+  tertiary: Omit<ThemeColors, 'disabled'>;
   /** Black color scale with various shades */
-  blackShades: {
-    15: string;
-    25: string;
-    50: string;
-    75: string;
-    85: string;
-    100: string;
-    200: string;
-    300: string;
-    400: string;
-    500: string;
-    600: string;
-    700: string;
-    800: string;
-    900: string;
-  };
+  blackShades: BlackShades;
 };

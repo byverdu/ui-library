@@ -12,8 +12,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "paths": {
-      "@types": ["src/theme/types.ts"],
-      "@constants": ["src/constants/index.ts"]
+      "@types": ["src/types/index.ts"],
+      "@constants": ["src/constants/index.ts"],
+      "@lib": ["src/lib/index.ts"],
+      "@hooks": ["src/hooks/index.ts"],
+      "@utils": ["src/utils/index.ts"]
     },
     "sourceMap": true,
     "typeRoots": ["./node_modules/@types", "./types"],
