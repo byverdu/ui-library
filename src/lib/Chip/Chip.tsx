@@ -7,6 +7,7 @@ import {
   type Theme,
   useMediaQuery,
 } from '@mui/material';
+import { ReactNode } from 'react';
 
 type AvatarChildren = {
   children?: string;
@@ -23,6 +24,8 @@ export type ChipProps = MUIChipProps & {
   responsiveBreakpointToHideLabel?: keyof Theme['breakpoints']['values'];
 };
 
+const getLabelValue = (label: ReactNode, hideLabel: boolean) => { }
+
 const getValueToDisplay = (item: string) => {
   const toNumber = Number(item);
   if (typeof toNumber !== 'number') {
@@ -37,8 +40,8 @@ const Chip = ({
   color = 'primary',
   sx,
   iconSx,
-  iconFontSize = 'medium',
-  responsiveBreakpointToHideLabel = 'small',
+  iconFontSize = 'small',
+  responsiveBreakpointToHideLabel = 'sm',
   label,
   ...rest
 }: ChipProps) => {
@@ -50,7 +53,7 @@ const Chip = ({
     <MUIChip
       data-testid='chip-component'
       {...rest}
-      label={hideLabel ? undefined : label}
+      {...(!hideLabel && iconName && { label })}
       color={color}
       avatar={
         avatarData && (
@@ -71,6 +74,13 @@ const Chip = ({
           />
         )
       }
+      sx={{
+        '.MuiChip-label:empty': {
+          display: 'none'
+        },
+        minWidth: iconName && hideLabel ? '32px' : '50px',
+        ...sx
+      }}
     />
   );
 };

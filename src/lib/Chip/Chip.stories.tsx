@@ -1,4 +1,6 @@
 import { Box } from '@mui/material';
+import * as MUIcon from '@mui/icons-material';
+
 import { Meta, StoryFn } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
@@ -25,6 +27,10 @@ export default {
     variant: {
       control: 'select',
       options: ['filled', 'outlined', 'square', 'square-filled'],
+    },
+    iconName: {
+      control: 'select',
+      options: Object.keys(MUIcon),
     },
     color: {
       control: 'select',
@@ -68,8 +74,7 @@ Default.args = {
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   label: 'With icon',
-  iconName: 'ChevronRight',
-  iconFontSize: 'medium',
+  iconName: 'AcUnit',
 };
 
 export const WithAvatarInitials = Template.bind({});
