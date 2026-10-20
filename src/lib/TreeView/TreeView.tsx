@@ -3,9 +3,6 @@ import { useState } from 'react';
 
 type NodeData = { id: number; text: string; children: NodeData[] };
 
-// Flat lookup: parent id -> direct children (same shape as `nodeChildrenMap`)
-type ChildrenMap = Record<string, NodeData[]>;
-
 export type BranchNodeProps = {
   node: NodeData;
   level: number;
